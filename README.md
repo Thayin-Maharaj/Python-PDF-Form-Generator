@@ -1,2 +1,10 @@
 # Resident-Database-Manager
 This program was created to make it easier to collect and/or update the information of residences in an estate. The idea was to take the information currently in the database and enter it into a digital pdf form for the residences to update their information without them needing to fill a new form or for the committee to manually create the forms.
+
+The Python script works in the terminal and has 3 functions, namely:
+  - Generate PDF Forms from a template where the name of the fillable fields match the headers of the excel file. Each file is then saved in the Generated folder with the address and surname of the resident as the file name.
+  - Update the database using forms that have been returned. These forms should be kept in the "Updated" folder so that the program can loop through only those files. This process creates a new excel file with all the info layed out as it would in the actual database. Every row can be copied into the database, overwriting the old data (Since the information does not change often and the number of residents is relativly small this seems like a suitable solution. Ideally every form should have a unique ID for each resident but this approach was less effort.)
+  - Email each file to the respective resident using the email address that is currently on the system. An html file that details how to open and edit the PDF is used as the body of the email with the PDF attached. Ideally none of the emails are incorrect or outdated but should that be the case then the emails are manually sent out. The email script uses a .env file to connect to the email servers so that needs to be created manually for your personal email.
+
+# Issues
+The biggest issue is that the PDF is somehow unreadable by Adobe Acrobat Reader, which returns an error about not being able to understand the font of the fillable fields (even though the actual labels on the form are the same font and are understood by Adobe). The form works fine on perfectly fine on browsers (tested on Chrome, Edge and Firefox).
