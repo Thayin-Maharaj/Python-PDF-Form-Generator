@@ -7,9 +7,9 @@ import os
 from datetime import date
 import time
 
-data = pd.read_csv('Database/WestulDatabaseOrd.csv')
+data = pd.read_csv('Database/Database.csv')
 pdfpath = os.getcwd()
-westulforms = os.path.join(pdfpath, 'WestulForms-Updated')
+updateforms = os.path.join(pdfpath, 'UpdatedForms')
 today = date.today()
 curdate = today.strftime("%B_%d_%Y")
 
@@ -21,13 +21,13 @@ def get_form_fields(infile):
 
 
 def update():
-    if os.path.isfile("Database/WestulDatabaseUpdated_{}.csv".format(curdate)):
-        df = pd.read_csv("Database/WestulDatabaseUpdated_{}.csv".format(curdate))
+    if os.path.isfile("Database/DatabaseUpdated_{}.csv".format(curdate)):
+        df = pd.read_csv("Database/DatabaseUpdated_{}.csv".format(curdate))
     else:
         df = data.drop(range(len(data)))
 
-    for file in os.listdir(westulforms):
-        curfile = os.path.join(westulforms, file)
+    for file in os.listdir(updateforms):
+        curfile = os.path.join(updateforms, file)
         if file.endswith(".pdf"):
             print('\n\n Reading from file: {} \n\n'.format(file))
             time.sleep(0.1)
@@ -46,4 +46,4 @@ def update():
             time.sleep(2)
             continue
 
-    df.to_csv('Database/WestulDatabaseUpdated_{}.csv'.format(curdate), index=False)
+    df.to_csv('Database/DatabaseUpdated_{}.csv'.format(curdate), index=False)
