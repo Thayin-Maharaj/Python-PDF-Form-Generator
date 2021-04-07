@@ -71,10 +71,10 @@ def generate():
     # pprint(get_form_fields(pdf_file_name))
 
 
-    data = pd.read_csv('Database/WestulDatabaseOrd.csv')
+    data = pd.read_csv('Database/Database.csv')
     fields = dict(get_form_fields(pdf_file_name))
     cwd = os.getcwd()
-    pdfpath = os.path.join(cwd, 'WestulForms-Generated/')
+    pdfpath = os.path.join(cwd, 'GeneratedForms/')
 
     for file in os.listdir(pdfpath):
         curfile = os.path.join(pdfpath, file)
@@ -91,4 +91,4 @@ def generate():
         infile = pdfpath + pdf_new_name+'.pdf'
         update_form_values(pdf_file_name, infile, fields)  # update the form fields
         data['FileName'][j] = pdf_new_name+'.pdf'
-    data.to_csv('Database/WestulDatabaseOrd.csv', index=None)        
+    data.to_csv('Database/Database.csv', index=None)        
